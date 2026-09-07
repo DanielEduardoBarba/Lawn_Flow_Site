@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --lawn: #4fad22;
-  --lawn-light: #76c91d;
-  --lawn-deep: #2f8a1c;
-  --flow: #0090e0;
-  --flow-light: #00aaff;
-  --flow-deep: #0070c0;
-  --ink: #152018;
-  --ink-soft: #3d4a40;
-  --mist: #f4f7f5;
-  --line: rgba(21, 32, 24, 0.08);
+  /* UI greens/blues are deepened for readable contrast on white / under white text */
+  --lawn: #2f8a1c;
+  --lawn-light: #5bb82a;
+  --lawn-deep: #1e6b12;
+  --flow: #0077c8;
+  --flow-light: #1a9fe0;
+  --flow-deep: #005a9e;
+  --ink: #0f1712;
+  --ink-soft: #2a342e;
+  --mist: #eef3ef;
+  --line: rgba(15, 23, 18, 0.14);
   --background: #ffffff;
   --foreground: var(--ink);
 }
@@ -70,11 +71,37 @@ img {
 }
 
 .brand-lawn {
-  color: var(--lawn);
+  color: var(--lawn-deep);
 }
 
 .brand-flow {
-  color: var(--flow);
+  color: var(--flow-deep);
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.btn-lawn {
+  background: var(--lawn-deep);
+  color: #ffffff;
+}
+
+.btn-flow {
+  background: var(--flow-deep);
+  color: #ffffff;
+}
+
+.btn-ghost-light {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .surface-trees {

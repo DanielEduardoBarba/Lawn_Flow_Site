@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="flex flex-1 items-center px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-xl text-center">
-        <p className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-lawn">
+        <p className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-lawn-deep">
           404
         </p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink">
@@ -16,13 +16,13 @@ export default function NotFound() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex h-12 items-center rounded-full bg-ink px-6 text-sm font-semibold text-white"
+            className="btn-primary inline-flex h-12 items-center rounded-full px-6 text-sm font-semibold"
           >
             Back home
           </Link>
           <Link
             href="/contact/"
-            className="inline-flex h-12 items-center rounded-full border border-line px-6 text-sm font-semibold text-ink"
+            className="inline-flex h-12 items-center rounded-full border border-line bg-white px-6 text-sm font-semibold text-ink"
           >
             Contact us
           </Link>

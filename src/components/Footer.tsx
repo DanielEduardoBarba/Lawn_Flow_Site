@@ -27,7 +27,7 @@ export function Footer() {
               <li key={service.slug}>
                 <Link
                   href={`/${service.slug}/`}
-                  className="text-[15px] text-ink-soft transition-colors hover:text-lawn"
+                  className="text-[15px] text-ink-soft transition-colors hover:text-lawn-deep"
                 >
                   {service.name}
                 </Link>
@@ -36,7 +36,7 @@ export function Footer() {
             <li>
               <Link
                 href="/contact/"
-                className="text-[15px] text-ink-soft transition-colors hover:text-flow"
+                className="text-[15px] text-ink-soft transition-colors hover:text-flow-deep"
               >
                 Contact
               </Link>
@@ -50,12 +50,12 @@ export function Footer() {
           </h2>
           <ul className="mt-4 space-y-3 text-[15px] text-ink-soft">
             <li>
-              <a href={site.phoneHref} className="transition-colors hover:text-flow">
+              <a href={site.phoneHref} className="transition-colors hover:text-flow-deep">
                 {site.phone}
               </a>
             </li>
             <li>
-              <a href={site.emailHref} className="transition-colors hover:text-flow">
+              <a href={site.emailHref} className="transition-colors hover:text-flow-deep">
                 {site.email}
               </a>
             </li>

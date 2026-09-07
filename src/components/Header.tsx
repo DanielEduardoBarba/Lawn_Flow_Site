@@ -54,7 +54,7 @@ export function Header() {
                 className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
                   active
                     ? "text-ink bg-mist"
-                    : "text-ink-soft hover:text-ink hover:bg-mist/70"
+                    : "text-ink hover:bg-mist/80"
                 }`}
               >
                 {link.label}
@@ -66,13 +66,13 @@ export function Header() {
         <div className="hidden items-center gap-3 md:flex">
           <a
             href={site.phoneHref}
-            className="text-sm font-medium text-ink-soft transition-colors hover:text-flow"
+            className="text-sm font-medium text-ink transition-colors hover:text-flow-deep"
           >
             {site.phone}
           </a>
           <Link
             href="/contact/"
-            className="inline-flex h-10 items-center rounded-full bg-ink px-4 text-sm font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="btn-primary inline-flex h-10 items-center rounded-full px-4 text-sm font-semibold transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
             Get a quote
           </Link>
@@ -125,7 +125,7 @@ export function Header() {
           <a
             href={site.phoneHref}
             onClick={closeMenu}
-            className="mt-2 rounded-2xl bg-mist px-4 py-3 text-base font-semibold text-flow"
+            className="mt-2 rounded-2xl bg-mist px-4 py-3 text-base font-semibold text-flow-deep"
           >
             Call {site.phone}
           </a>

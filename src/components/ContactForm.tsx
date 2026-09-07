@@ -33,7 +33,7 @@ export function ContactForm() {
         <p className="font-display text-2xl font-semibold text-ink">Thanks — your message is ready.</p>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
           Your email app should open with the details filled in. If it does not, write us directly at{" "}
-          <a className="font-medium text-flow underline-offset-4 hover:underline" href={site.emailHref}>
+          <a className="font-medium text-flow-deep underline-offset-4 hover:underline" href={site.emailHref}>
             {site.email}
           </a>
           .
@@ -55,7 +55,7 @@ export function ContactForm() {
             required
             name="name"
             autoComplete="name"
-            className="h-12 w-full rounded-2xl border border-line bg-mist/40 px-4 text-[15px] outline-none transition focus:border-flow focus:bg-white"
+            className="h-12 w-full rounded-2xl border border-line bg-mist/60 px-4 text-[15px] text-ink outline-none transition placeholder:text-ink-soft/70 focus:border-flow-deep focus:bg-white"
             placeholder="Alex Rivera"
           />
         </label>
@@ -66,7 +66,7 @@ export function ContactForm() {
             type="email"
             name="email"
             autoComplete="email"
-            className="h-12 w-full rounded-2xl border border-line bg-mist/40 px-4 text-[15px] outline-none transition focus:border-flow focus:bg-white"
+            className="h-12 w-full rounded-2xl border border-line bg-mist/60 px-4 text-[15px] text-ink outline-none transition placeholder:text-ink-soft/70 focus:border-flow-deep focus:bg-white"
             placeholder="you@email.com"
           />
         </label>
@@ -75,7 +75,7 @@ export function ContactForm() {
           <input
             name="phone"
             autoComplete="tel"
-            className="h-12 w-full rounded-2xl border border-line bg-mist/40 px-4 text-[15px] outline-none transition focus:border-flow focus:bg-white"
+            className="h-12 w-full rounded-2xl border border-line bg-mist/60 px-4 text-[15px] text-ink outline-none transition placeholder:text-ink-soft/70 focus:border-flow-deep focus:bg-white"
             placeholder="(555) 000-0000"
           />
         </label>
@@ -83,7 +83,7 @@ export function ContactForm() {
           <span className="text-sm font-medium text-ink">Interest</span>
           <select
             name="interest"
-            className="h-12 w-full rounded-2xl border border-line bg-mist/40 px-4 text-[15px] outline-none transition focus:border-flow focus:bg-white"
+            className="h-12 w-full rounded-2xl border border-line bg-mist/60 px-4 text-[15px] text-ink outline-none transition placeholder:text-ink-soft/70 focus:border-flow-deep focus:bg-white"
             defaultValue="Landscaping"
           >
             {interests.map((item) => (
@@ -101,14 +101,14 @@ export function ContactForm() {
           required
           name="message"
           rows={5}
-          className="w-full resize-y rounded-2xl border border-line bg-mist/40 px-4 py-3 text-[15px] outline-none transition focus:border-flow focus:bg-white"
+          className="w-full resize-y rounded-2xl border border-line bg-mist/60 px-4 py-3 text-[15px] text-ink outline-none transition placeholder:text-ink-soft/70 focus:border-flow-deep focus:bg-white"
           placeholder="Tell us about your yard, timeline, and what you want improved."
         />
       </label>
 
       <button
         type="submit"
-        className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
+        className="btn-primary mt-6 inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold transition-transform hover:scale-[1.02] active:scale-[0.98]"
       >
         Send message
       </button>

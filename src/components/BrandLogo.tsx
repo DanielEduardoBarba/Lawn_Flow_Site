@@ -5,6 +5,7 @@ type BrandLogoProps = {
   className?: string
   priority?: boolean
   size?: "sm" | "md" | "lg"
+  onDark?: boolean
 }
 
 const sizes = {
@@ -13,7 +14,12 @@ const sizes = {
   lg: { box: "h-20 w-20", text: "text-3xl" },
 }
 
-export function BrandLogo({ className = "", priority = false, size = "md" }: BrandLogoProps) {
+export function BrandLogo({
+  className = "",
+  priority = false,
+  size = "md",
+  onDark = false,
+}: BrandLogoProps) {
   const s = sizes[size]
 
   return (
@@ -29,8 +35,8 @@ export function BrandLogo({ className = "", priority = false, size = "md" }: Bra
         />
       </span>
       <span className={`font-display font-bold italic tracking-tight leading-none ${s.text}`}>
-        <span className="brand-lawn">LAWN</span>
-        <span className="brand-flow">FLOW</span>
+        <span className={onDark ? "text-lawn-light" : "brand-lawn"}>LAWN</span>
+        <span className={onDark ? "text-flow-light" : "brand-flow"}>FLOW</span>
       </span>
     </Link>
   )

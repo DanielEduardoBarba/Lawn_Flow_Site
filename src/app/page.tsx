@@ -27,16 +27,16 @@ export default function HomePage() {
           sizes="100vw"
           className="object-cover hero-kenburns opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/55 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
 
         <div className="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24">
           <div className="reveal max-w-3xl">
-            <BrandLogo size="lg" className="[&_span.brand-lawn]:drop-shadow-sm [&_span.brand-flow]:drop-shadow-sm" />
+            <BrandLogo size="lg" onDark priority />
             <h1 className="mt-8 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
               Outdoor spaces that feel finished — and stay that way.
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/88 sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
               Landscaping, irrigation, and lawn care with the same standard: clean lines, healthy growth, and water that actually reaches the roots.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -48,7 +48,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/landscaping/"
-                className="inline-flex h-12 items-center rounded-full border border-white/30 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/18"
+                className="btn-ghost-light inline-flex h-12 items-center rounded-full px-6 text-sm font-semibold transition-transform hover:scale-[1.02]"
               >
                 Explore services
               </Link>
@@ -60,7 +60,7 @@ export default function HomePage() {
       <section className="px-5 py-20 sm:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-lawn">What we do</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-lawn-deep">What we do</p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               Three crafts. One careful hand.
             </h2>
@@ -78,12 +78,12 @@ export default function HomePage() {
               >
                 <p
                   className={`text-sm font-semibold ${
-                    service.accent === "flow" ? "text-flow" : "text-lawn"
+                    service.accent === "flow" ? "text-flow-deep" : "text-lawn-deep"
                   }`}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-3 font-display text-2xl font-semibold text-ink transition-colors group-hover:text-lawn">
+                <h3 className="mt-3 font-display text-2xl font-semibold text-ink transition-colors group-hover:text-lawn-deep">
                   {service.name}
                 </h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{service.summary}</p>
@@ -98,7 +98,7 @@ export default function HomePage() {
                 </div>
                 <span
                   className={`mt-5 inline-flex text-sm font-semibold ${
-                    service.accent === "flow" ? "text-flow" : "text-lawn"
+                    service.accent === "flow" ? "text-flow-deep" : "text-lawn-deep"
                   }`}
                 >
                   View {service.shortName.toLowerCase()} →
@@ -112,18 +112,18 @@ export default function HomePage() {
       <section className="border-y border-line bg-mist px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-flow">Why Lawn Flow</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-flow-deep">Why Lawn Flow</p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               Minimal noise. Maximum care.
             </h2>
             <ul className="mt-8 space-y-5 text-[15px] leading-relaxed text-ink-soft">
-              <li className="border-l-2 border-lawn pl-4">
+              <li className="border-l-2 border-lawn-deep pl-4">
                 Landscapes built around trees, hedges, and beds that look intentional from the street.
               </li>
-              <li className="border-l-2 border-flow pl-4">
+              <li className="border-l-2 border-flow-deep pl-4">
                 Irrigation installed and repaired so coverage is even — not guesswork.
               </li>
-              <li className="border-l-2 border-lawn pl-4">
+              <li className="border-l-2 border-lawn-deep pl-4">
                 Lawn care that keeps edges sharp and turf thick without overcomplicating the schedule.
               </li>
             </ul>
@@ -148,14 +148,14 @@ export default function HomePage() {
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-ink-soft">
             Serving {site.serviceArea}. Call{" "}
-            <a href={site.phoneHref} className="font-medium text-flow">
+            <a href={site.phoneHref} className="font-medium text-flow-deep">
               {site.phone}
             </a>{" "}
             or send a quick note — we typically reply the same business day.
           </p>
           <Link
             href="/contact/"
-            className="mt-8 inline-flex h-12 items-center rounded-full bg-ink px-7 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+            className="btn-primary mt-8 inline-flex h-12 items-center rounded-full px-7 text-sm font-semibold transition-transform hover:scale-[1.02]"
           >
             Contact us
           </Link>

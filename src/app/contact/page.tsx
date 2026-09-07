@@ -22,7 +22,7 @@ export default function ContactPage() {
     <section className="surface-water px-5 py-16 sm:px-8 sm:py-20">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-flow">Contact</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-flow-deep">Contact</p>
           <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
             Tell us about your yard.
           </h1>
@@ -36,7 +36,7 @@ export default function ContactPage() {
                 Phone
               </dt>
               <dd className="mt-1.5">
-                <a href={site.phoneHref} className="text-flow transition-colors hover:text-flow-deep">
+                <a href={site.phoneHref} className="font-medium text-flow-deep transition-colors hover:text-ink">
                   {site.phone}
                 </a>
               </dd>
@@ -46,7 +46,7 @@ export default function ContactPage() {
                 Email
               </dt>
               <dd className="mt-1.5">
-                <a href={site.emailHref} className="text-flow transition-colors hover:text-flow-deep">
+                <a href={site.emailHref} className="font-medium text-flow-deep transition-colors hover:text-ink">
                   {site.email}
                 </a>
               </dd>

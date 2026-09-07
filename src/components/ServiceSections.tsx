@@ -9,8 +9,8 @@ const themeSurface: Record<Service["theme"], string> = {
 }
 
 const accentText: Record<Service["accent"], string> = {
-  lawn: "text-lawn",
-  flow: "text-flow",
+  lawn: "text-lawn-deep",
+  flow: "text-flow-deep",
 }
 
 export function ServiceHero({ service }: { service: Service }) {
@@ -27,17 +27,17 @@ export function ServiceHero({ service }: { service: Service }) {
           sizes="100vw"
           className="object-cover hero-kenburns"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/25 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/20" />
         <div className={`absolute inset-0 ${waterClass}`} />
 
         <div className="relative mx-auto flex min-h-[78vh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20">
-          <p className={`reveal text-sm font-semibold uppercase tracking-[0.18em] text-white/85`}>
-            <span className={accentText[service.accent]}>{service.shortName}</span>
+          <p className="reveal text-sm font-semibold uppercase tracking-[0.18em] text-white">
+            {service.shortName}
           </p>
           <h1 className="reveal reveal-delay-1 mt-4 max-w-3xl font-display text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
             {service.headline}
           </h1>
-          <p className="reveal reveal-delay-2 mt-5 max-w-xl text-base leading-relaxed text-white/88 sm:text-lg">
+          <p className="reveal reveal-delay-2 mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
             {service.summary}
           </p>
           <div className="reveal reveal-delay-3 mt-8 flex flex-wrap gap-3">
@@ -49,7 +49,7 @@ export function ServiceHero({ service }: { service: Service }) {
             </Link>
             <a
               href="#work"
-              className="inline-flex h-12 items-center rounded-full border border-white/35 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/18"
+              className="btn-ghost-light inline-flex h-12 items-center rounded-full px-6 text-sm font-semibold transition-transform hover:scale-[1.02]"
             >
               See the work
             </a>
@@ -154,8 +154,8 @@ export function ServiceCTA({ accent }: { accent: Service["accent"] }) {
         </p>
         <Link
           href="/contact/"
-          className={`mt-8 inline-flex h-12 items-center rounded-full px-7 text-sm font-semibold text-white transition-transform hover:scale-[1.02] ${
-            accent === "flow" ? "bg-flow" : "bg-lawn"
+          className={`mt-8 inline-flex h-12 items-center rounded-full px-7 text-sm font-semibold transition-transform hover:scale-[1.02] ${
+            accent === "flow" ? "btn-flow" : "btn-lawn"
           }`}
         >
           Contact Lawn Flow
