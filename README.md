@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lawn Flow Website
 
-## Getting Started
+Premium static website for **Lawn Flow** — landscaping, irrigation, and lawn care.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + React
+- Tailwind CSS v4
+- TypeScript
+- Static export for Firebase Hosting
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production build (Firebase)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Output is written to `out/`. Deploy with:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+firebase deploy --only hosting
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Or use `npm run deploy` after Firebase CLI login and project setup.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Update `.firebaserc` with your Firebase project ID, and set `site.url` in `src/lib/site.ts` to your live domain.
 
-## Deploy on Vercel
+## Contact placeholders
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Filler contact details live in `src/lib/site.ts` — replace phone, email, address, and service area before launch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Code style
+
+No line-terminating semicolons (enforced via ESLint `semi: never`).
+# Lawn_Flow_Site
