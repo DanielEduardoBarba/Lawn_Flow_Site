@@ -1,4 +1,7 @@
 import type { Metadata } from "next"
+import { Breadcrumbs } from "@/components/Breadcrumbs"
+import { FaqSection } from "@/components/FaqSection"
+import { ServiceJsonLd } from "@/components/JsonLd"
 import {
   Offerings,
   PhotoGallery,
@@ -6,30 +9,44 @@ import {
   ServiceHero,
 } from "@/components/ServiceSections"
 import { getService } from "@/lib/services"
-import { site } from "@/lib/site"
+import { buildPageMetadata } from "@/lib/seo"
 
 const service = getService("lawncare")
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: service.seoTitle,
   description: service.seoDescription,
-  alternates: {
-    canonical: "/lawncare/",
-  },
-  openGraph: {
-    title: service.seoTitle,
-    description: service.seoDescription,
-    url: `${site.url}/lawncare/`,
-    images: [{ url: service.heroImage, alt: service.heroAlt }],
-  },
-}
+  path: "/lawncare/",
+  image: service.heroImage,
+  imageAlt: service.heroAlt,
+  keywords: service.keywords,
+})
 
 export default function LawnCarePage() {
   return (
     <>
+      <ServiceJsonLd
+        name={service.name}
+        description={service.seoDescription}
+        path="/lawncare/"
+        image={service.heroImage}
+        faqs={service.faqs}
+      />
       <ServiceHero service={service} />
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Lawn Care" },
+        ]}
+      />
       <Offerings service={service} />
       <PhotoGallery items={service.gallery} accent={service.accent} />
+      <FaqSection
+        items={service.faqs}
+        accent={service.accent}
+        heading={`${service.name} questions`}
+        intro={`Straight answers about ${service.name.toLowerCase()} for homes across Broward County.`}
+      />
       <ServiceCTA accent={service.accent} />
     </>
   )

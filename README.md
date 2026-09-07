@@ -34,9 +34,15 @@ Or use `npm run deploy` after Firebase CLI login and project setup.
 
 Update `.firebaserc` with your Firebase project ID, and set `site.url` in `src/lib/site.ts` to your live domain.
 
-## Contact placeholders
+## Contact & location
 
-Filler contact details live in `src/lib/site.ts` — replace phone, email, address, and service area before launch.
+Update `src/lib/site.ts` before launch:
+
+- Live domain (`site.url`)
+- Phone, email, street address
+- Confirm Broward service cities if the list should be narrower
+
+SEO is scoped to **Broward County, FL** only (not Miami-Dade / Palm Beach).
 
 ## Code style
 

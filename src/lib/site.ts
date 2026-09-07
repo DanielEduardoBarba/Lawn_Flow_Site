@@ -3,7 +3,9 @@ export const site = {
   legalName: "Lawn Flow Landscaping",
   tagline: "Landscaping · Irrigation · Lawn Care",
   description:
-    "Lawn Flow designs, installs, and maintains landscapes, irrigation systems, and healthy lawns with clean craftsmanship and lasting results.",
+    "Lawn Flow provides landscaping, irrigation, and lawn care across Broward County, FL. We design outdoor spaces, install and repair sprinkler systems, and keep lawns thick, edged, and healthy.",
+  shortDescription:
+    "Professional landscaping, irrigation installation & repair, and lawn care serving Broward County, FL.",
   url: "https://lawnflow.example.com",
   phone: "(555) 014-2780",
   phoneHref: "tel:+15550142780",
@@ -11,13 +13,72 @@ export const site = {
   emailHref: "mailto:hello@lawnflow.example.com",
   address: {
     street: "1240 Greenery Lane",
-    city: "Riverside",
+    city: "Fort Lauderdale",
     region: "FL",
-    postal: "32001",
+    postal: "33301",
     country: "US",
   },
+  county: "Broward County",
+  geo: {
+    latitude: 26.1224,
+    longitude: -80.1373,
+  },
   hours: "Mon–Sat · 7:00 AM – 6:00 PM",
-  serviceArea: "Riverside & surrounding neighborhoods",
+  openingHoursSpecification: [
+    {
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "07:00",
+      closes: "18:00",
+    },
+  ],
+  priceRange: "$$",
+  serviceArea: "Broward County, FL",
+  serviceAreaCities: [
+    "Fort Lauderdale",
+    "Hollywood",
+    "Pembroke Pines",
+    "Miramar",
+    "Coral Springs",
+    "Pompano Beach",
+    "Davie",
+    "Plantation",
+    "Sunrise",
+    "Deerfield Beach",
+    "Weston",
+    "Tamarac",
+    "Margate",
+    "Coconut Creek",
+    "Oakland Park",
+    "Lauderdale Lakes",
+    "Lauderhill",
+    "Parkland",
+  ],
+  serviceTypes: [
+    "Landscaping",
+    "Landscape design and installation",
+    "Privacy hedges",
+    "Tree and palm planting",
+    "Mulch beds and edging",
+    "Irrigation installation",
+    "Sprinkler repair",
+    "Irrigation zoning and tune-ups",
+    "Lawn care",
+    "Lawn mowing and edging",
+    "Residential turf maintenance",
+  ],
+  keywords: [
+    "landscaping Broward County",
+    "lawn care Broward County FL",
+    "irrigation repair Fort Lauderdale",
+    "sprinkler installation Broward",
+    "lawn mowing Hollywood FL",
+    "landscaping Pembroke Pines",
+    "privacy hedges Broward",
+    "residential landscaping South Florida",
+    "Lawn Flow",
+  ],
+  ogImage: "/images/IMG_0220.jpg",
+  logo: "/logo.png",
   social: {
     instagram: "https://instagram.com/lawnflow",
     facebook: "https://facebook.com/lawnflow",
@@ -25,3 +86,6 @@ export const site = {
 } as const
 
 export const fullAddress = `${site.address.street}, ${site.address.city}, ${site.address.region} ${site.address.postal}`
+
+/** Primary SEO locality — keep searches scoped to Broward */
+export const localityLabel = "Broward County, FL"

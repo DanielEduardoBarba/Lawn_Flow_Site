@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  /* UI greens/blues are deepened for readable contrast on white / under white text */
   --lawn: #2f8a1c;
   --lawn-light: #5bb82a;
   --lawn-deep: #1e6b12;
@@ -14,6 +13,10 @@
   --line: rgba(15, 23, 18, 0.14);
   --background: #ffffff;
   --foreground: var(--ink);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --shadow-soft: 0 18px 50px rgba(15, 23, 18, 0.1);
+  --shadow-lift: 0 28px 70px rgba(15, 23, 18, 0.16);
 }
 
 @theme inline {
@@ -78,88 +81,338 @@ img {
   color: var(--flow-deep);
 }
 
+.btn-primary,
+.btn-lawn,
+.btn-flow,
+.btn-ghost-light,
+.btn-solid-light {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.35s var(--ease-spring),
+    background-color 0.3s ease,
+    box-shadow 0.35s var(--ease-out),
+    border-color 0.3s ease;
+}
+
 .btn-primary {
   background: var(--ink);
   color: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 18, 0.18);
 }
 
 .btn-lawn {
   background: var(--lawn-deep);
   color: #ffffff;
+  box-shadow: 0 12px 30px color-mix(in oklab, var(--lawn-deep) 35%, transparent);
 }
 
 .btn-flow {
   background: var(--flow-deep);
   color: #ffffff;
+  box-shadow: 0 12px 30px color-mix(in oklab, var(--flow-deep) 35%, transparent);
+}
+
+.btn-solid-light {
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 
 .btn-ghost-light {
   border: 1px solid rgba(255, 255, 255, 0.55);
   background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+}
+
+.btn-primary:hover,
+.btn-lawn:hover,
+.btn-flow:hover,
+.btn-solid-light:hover,
+.btn-ghost-light:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 16px 36px rgba(15, 23, 18, 0.24);
+}
+
+.btn-lawn:hover {
+  background: var(--lawn);
+  box-shadow: 0 18px 40px color-mix(in oklab, var(--lawn-deep) 40%, transparent);
+}
+
+.btn-flow:hover {
+  background: var(--flow);
+  box-shadow: 0 18px 40px color-mix(in oklab, var(--flow-deep) 40%, transparent);
+}
+
+.btn-solid-light:hover {
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
 }
 
 .btn-ghost-light:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-primary:active,
+.btn-lawn:active,
+.btn-flow:active,
+.btn-solid-light:active,
+.btn-ghost-light:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.surface-trees,
+.surface-water,
+.surface-grass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .surface-trees {
   background:
-    radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--lawn-light) 18%, white), transparent 60%),
-    radial-gradient(900px 420px at 90% 0%, color-mix(in oklab, var(--lawn-deep) 10%, white), transparent 55%),
-    #ffffff;
+    radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--lawn-light) 20%, white), transparent 60%),
+    radial-gradient(900px 420px at 90% 0%, color-mix(in oklab, var(--lawn-deep) 12%, white), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, var(--mist) 100%);
 }
 
 .surface-water {
   background:
-    radial-gradient(1100px 520px at 85% -15%, color-mix(in oklab, var(--flow-light) 22%, white), transparent 58%),
-    radial-gradient(800px 380px at 0% 20%, color-mix(in oklab, var(--flow) 12%, white), transparent 50%),
-    #ffffff;
+    radial-gradient(1100px 520px at 85% -15%, color-mix(in oklab, var(--flow-light) 24%, white), transparent 58%),
+    radial-gradient(800px 380px at 0% 20%, color-mix(in oklab, var(--flow) 14%, white), transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, var(--mist) 100%);
 }
 
 .surface-grass {
   background:
-    radial-gradient(1000px 480px at 50% -20%, color-mix(in oklab, var(--lawn) 16%, white), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, color-mix(in oklab, var(--lawn-light) 6%, white) 100%);
+    radial-gradient(1000px 480px at 50% -20%, color-mix(in oklab, var(--lawn) 18%, white), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, var(--mist) 100%);
+}
+
+.ambient-drift {
+  position: relative;
+  overflow: hidden;
+}
+
+.ambient-drift::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--lawn-light) 16%, transparent), transparent 42%),
+    radial-gradient(circle at 80% 20%, color-mix(in oklab, var(--flow-light) 14%, transparent), transparent 40%),
+    radial-gradient(circle at 55% 75%, color-mix(in oklab, var(--flow) 10%, transparent), transparent 48%);
+  animation: ambient-drift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.hero-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 28%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-kenburns {
-  animation: kenburns 22s ease-in-out infinite alternate;
+  animation: kenburns 24s var(--ease-out) infinite alternate;
   will-change: transform;
 }
 
-@keyframes kenburns {
-  from {
-    transform: scale(1.02);
-  }
-  to {
-    transform: scale(1.08);
-  }
+.media-depth {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.55s var(--ease-out),
+    box-shadow 0.55s var(--ease-out);
+}
+
+.media-depth::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 18, 0.22), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.group:hover .media-depth,
+.media-depth:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+}
+
+.group:hover .media-depth::after,
+.media-depth:hover::after {
+  opacity: 1;
+}
+
+.media-depth img,
+.media-depth > span {
+  transition: transform 0.9s var(--ease-out);
+}
+
+.group:hover .media-depth img,
+.media-depth:hover img {
+  transform: scale(1.06);
+}
+
+.offer-item {
+  position: relative;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.offer-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--lawn), var(--flow));
+  transition: width 0.55s var(--ease-out);
+}
+
+.offer-item:hover {
+  transform: translateX(4px);
+}
+
+.offer-item:hover::before {
+  width: 64px;
+}
+
+.service-link {
+  position: relative;
+}
+
+.service-link .arrow {
+  display: inline-block;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.service-link:hover .arrow {
+  transform: translateX(6px);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--lawn), var(--flow));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+.reveal,
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(4px);
+  transition:
+    opacity 0.85s var(--ease-out),
+    transform 0.85s var(--ease-out),
+    filter 0.85s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  animation: reveal-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: reveal-up 1s var(--ease-out) forwards;
 }
 
 .reveal-delay-1 {
+  --reveal-delay: 120ms;
   animation-delay: 0.12s;
 }
 
 .reveal-delay-2 {
+  --reveal-delay: 240ms;
   animation-delay: 0.24s;
 }
 
 .reveal-delay-3 {
+  --reveal-delay: 360ms;
   animation-delay: 0.36s;
+}
+
+.reveal-delay-4 {
+  --reveal-delay: 480ms;
+  animation-delay: 0.48s;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.scroll-reveal-left {
+  transform: translateX(-28px);
+}
+
+.scroll-reveal-left.is-visible {
+  transform: translateX(0);
+}
+
+.scroll-reveal-scale {
+  transform: translateY(18px) scale(0.97);
+}
+
+.scroll-reveal-scale.is-visible {
+  transform: translateY(0) scale(1);
 }
 
 @keyframes reveal-up {
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@keyframes ambient-drift {
+  from {
+    transform: translate3d(-1.5%, 0, 0) scale(1.04);
+  }
+  to {
+    transform: translate3d(1.5%, -1.5%, 0) scale(1.1);
   }
 }
 
@@ -168,6 +421,24 @@ img {
   width: 72px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--lawn), var(--flow));
+  transform-origin: left center;
+  animation: line-grow 1.2s var(--ease-out) both;
+}
+
+.flow-line-center {
+  margin-inline: auto;
+  transform-origin: center;
+}
+
+@keyframes line-grow {
+  from {
+    transform: scaleX(0.2);
+    opacity: 0.2;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 .water-sheen {
@@ -182,11 +453,26 @@ img {
   background: linear-gradient(
     115deg,
     transparent 35%,
-    color-mix(in oklab, var(--flow-light) 18%, transparent) 48%,
+    color-mix(in oklab, var(--flow-light) 22%, transparent) 48%,
     transparent 62%
   );
   transform: translateX(-120%);
   animation: sheen 7s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  border: 1px solid color-mix(in oklab, var(--flow-light) 45%, transparent);
+  animation: pulse-ring 3.4s ease-out infinite;
   pointer-events: none;
 }
 
@@ -201,6 +487,99 @@ img {
   }
 }
 
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+}
+
+.grass-sway {
+  position: absolute;
+  inset: auto 0 0;
+  height: 120px;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 40%, color-mix(in oklab, var(--lawn-light) 18%, transparent) 50%, transparent 60%),
+    linear-gradient(to top, color-mix(in oklab, var(--lawn) 16%, transparent), transparent);
+  animation: grass-sway 8s ease-in-out infinite alternate;
+  z-index: 2;
+  mix-blend-mode: soft-light;
+}
+
+@keyframes grass-sway {
+  from {
+    transform: translateX(-2%) skewX(-2deg);
+    opacity: 0.45;
+  }
+  to {
+    transform: translateX(2%) skewX(2deg);
+    opacity: 0.7;
+  }
+}
+
+.tree-canopy {
+  position: absolute;
+  inset: -8% -5% auto;
+  height: 42%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 40%, color-mix(in oklab, var(--lawn-deep) 25%, transparent), transparent 55%),
+    radial-gradient(ellipse at 70% 20%, color-mix(in oklab, var(--lawn-light) 22%, transparent), transparent 50%);
+  animation: canopy-breathe 10s ease-in-out infinite alternate;
+  z-index: 2;
+  mix-blend-mode: soft-light;
+}
+
+@keyframes canopy-breathe {
+  from {
+    transform: scale(1) translateY(0);
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(1.06) translateY(2%);
+    opacity: 0.8;
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.7s var(--ease-out) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-shell {
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease,
+    backdrop-filter 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.header-shell.is-scrolled {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(15, 23, 18, 0.06);
+  border-bottom: 1px solid var(--line);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -208,12 +587,34 @@ img {
 
   .hero-kenburns,
   .reveal,
-  .water-sheen::after {
+  .water-sheen::after,
+  .ambient-drift::before,
+  .flow-line,
+  .pulse-ring::before,
+  .grass-sway,
+  .tree-canopy,
+  .page-enter {
     animation: none !important;
   }
 
-  .reveal {
-    opacity: 1;
+  .reveal,
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .btn-primary:hover,
+  .btn-lawn:hover,
+  .btn-flow:hover,
+  .btn-solid-light:hover,
+  .btn-ghost-light:hover,
+  .group:hover .media-depth,
+  .media-depth:hover,
+  .offer-item:hover {
     transform: none;
   }
 }

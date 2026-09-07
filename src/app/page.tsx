@@ -2,26 +2,31 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { BrandLogo } from "@/components/BrandLogo"
+import { Reveal } from "@/components/Reveal"
 import { services } from "@/lib/services"
-import { site } from "@/lib/site"
+import { buildPageMetadata } from "@/lib/seo"
+import { localityLabel, site } from "@/lib/site"
 
 export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: `${site.name} | Landscaping, Irrigation & Lawn Care in ${localityLabel}`,
+    description: site.description,
+    path: "/",
+    image: site.ogImage,
+    imageAlt: `Healthy irrigated lawn by ${site.name} in ${localityLabel}`,
+  }),
   title: {
-    absolute: `${site.name} | Landscaping, Irrigation & Lawn Care`,
-  },
-  description: site.description,
-  alternates: {
-    canonical: "/",
+    absolute: `${site.name} | Landscaping, Irrigation & Lawn Care in ${localityLabel}`,
   },
 }
 
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[92vh] overflow-hidden bg-ink">
+      <section className="hero-stage relative min-h-[92vh] overflow-hidden bg-ink">
         <Image
           src="/images/IMG_0220.jpg"
-          alt="Lush residential lawn with active irrigation mist"
+          alt={`Lush residential lawn with active irrigation mist in ${localityLabel}`}
           fill
           priority
           sizes="100vw"
@@ -29,26 +34,28 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/55 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+        <div className="grass-sway opacity-60" aria-hidden="true" />
 
-        <div className="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24">
+        <div className="relative z-[3] mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24">
           <div className="reveal max-w-3xl">
             <BrandLogo size="lg" onDark priority />
-            <h1 className="mt-8 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <div className="reveal-delay-1 mt-6 flow-line" aria-hidden="true" />
+            <h1 className="reveal reveal-delay-1 mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
               Outdoor spaces that feel finished — and stay that way.
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
-              Landscaping, irrigation, and lawn care with the same standard: clean lines, healthy growth, and water that actually reaches the roots.
+            <p className="reveal reveal-delay-2 mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
+              Landscaping, irrigation, and lawn care across {localityLabel} — clean lines, healthy growth, and water that actually reaches the roots.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="reveal reveal-delay-3 mt-9 flex flex-wrap gap-3">
               <Link
                 href="/contact/"
-                className="inline-flex h-12 items-center rounded-full bg-white px-6 text-sm font-semibold text-ink transition-transform hover:scale-[1.02]"
+                className="btn-solid-light inline-flex h-12 items-center rounded-full px-6 text-sm font-semibold"
               >
                 Get a free quote
               </Link>
               <Link
                 href="/landscaping/"
-                className="btn-ghost-light inline-flex h-12 items-center rounded-full px-6 text-sm font-semibold transition-transform hover:scale-[1.02]"
+                className="btn-ghost-light inline-flex h-12 items-center rounded-full px-6 text-sm font-semibold"
               >
                 Explore services
               </Link>
@@ -57,9 +64,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8">
+      <section className="ambient-drift px-5 py-20 sm:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="max-w-2xl">
+          <Reveal className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-lawn-deep">What we do</p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               Three crafts. One careful hand.
@@ -67,43 +74,47 @@ export default function HomePage() {
             <p className="mt-4 text-[16px] leading-relaxed text-ink-soft">
               Every property gets the right mix of structure, water, and turf — planned together so nothing fights the rest of the yard.
             </p>
-          </div>
+          </Reveal>
 
           <div className="mt-14 grid gap-10 lg:grid-cols-3">
             {services.map((service, index) => (
-              <Link
-                key={service.slug}
-                href={`/${service.slug}/`}
-                className="group block border-t border-line pt-7 transition-colors"
-              >
-                <p
-                  className={`text-sm font-semibold ${
-                    service.accent === "flow" ? "text-flow-deep" : "text-lawn-deep"
-                  }`}
+              <Reveal key={service.slug} delay={index * 120}>
+                <Link
+                  href={`/${service.slug}/`}
+                  className="service-link group block border-t border-line pt-7"
                 >
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-3 font-display text-2xl font-semibold text-ink transition-colors group-hover:text-lawn-deep">
-                  {service.name}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{service.summary}</p>
-                <div className="relative mt-6 aspect-[4/5] overflow-hidden rounded-[1.4rem]">
-                  <Image
-                    src={service.heroImage}
-                    alt={service.heroAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                </div>
-                <span
-                  className={`mt-5 inline-flex text-sm font-semibold ${
-                    service.accent === "flow" ? "text-flow-deep" : "text-lawn-deep"
-                  }`}
-                >
-                  View {service.shortName.toLowerCase()} →
-                </span>
-              </Link>
+                  <p
+                    className={`text-sm font-semibold ${
+                      service.accent === "flow" ? "text-flow-deep" : "text-lawn-deep"
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl font-semibold text-ink transition-colors duration-300 group-hover:text-lawn-deep">
+                    {service.name}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{service.summary}</p>
+                  <div className="media-depth relative mt-6 aspect-[4/5] rounded-[1.4rem]">
+                    <Image
+                      src={service.heroImage}
+                      alt={service.heroAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <span
+                    className={`mt-5 inline-flex items-center gap-1 text-sm font-semibold ${
+                      service.accent === "flow" ? "text-flow-deep" : "text-lawn-deep"
+                    }`}
+                  >
+                    View {service.shortName.toLowerCase()}
+                    <span className="arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -111,55 +122,79 @@ export default function HomePage() {
 
       <section className="border-y border-line bg-mist px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
-          <div>
+          <Reveal variant="left">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-flow-deep">Why Lawn Flow</p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               Minimal noise. Maximum care.
             </h2>
             <ul className="mt-8 space-y-5 text-[15px] leading-relaxed text-ink-soft">
-              <li className="border-l-2 border-lawn-deep pl-4">
+              <li className="offer-item border-l-2 border-lawn-deep pl-4">
                 Landscapes built around trees, hedges, and beds that look intentional from the street.
               </li>
-              <li className="border-l-2 border-flow-deep pl-4">
+              <li className="offer-item border-l-2 border-flow-deep pl-4">
                 Irrigation installed and repaired so coverage is even — not guesswork.
               </li>
-              <li className="border-l-2 border-lawn-deep pl-4">
+              <li className="offer-item border-l-2 border-lawn-deep pl-4">
                 Lawn care that keeps edges sharp and turf thick without overcomplicating the schedule.
               </li>
             </ul>
-          </div>
-          <div className="relative aspect-[5/6] overflow-hidden rounded-[1.75rem]">
-            <Image
-              src="/images/IMG_8096.jpg"
-              alt="Professionally landscaped palm bed with dark mulch"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
+          </Reveal>
+          <Reveal variant="scale" delay={120}>
+            <div className="media-depth relative aspect-[5/6] rounded-[1.75rem]">
+              <Image
+                src="/images/IMG_8096.jpg"
+                alt={`Professionally landscaped palm bed with dark mulch in ${localityLabel}`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flow-line" />
+      <section className="ambient-drift px-5 py-20 sm:px-8" aria-labelledby="service-area-heading">
+        <div className="mx-auto max-w-6xl">
+          <Reveal className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-lawn-deep">Service area</p>
+            <h2
+              id="service-area-heading"
+              className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
+            >
+              Built for Broward yards.
+            </h2>
+            <p className="mt-4 text-[16px] leading-relaxed text-ink-soft">
+              We serve homeowners throughout {localityLabel} — close enough for reliable scheduling, familiar with local turf, palms, and irrigation needs. We do not travel far outside the county.
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="mt-10 max-w-4xl text-[15px] leading-relaxed text-ink-soft">
+              {site.serviceAreaCities.join(" · ")}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-line px-5 py-20 sm:px-8">
+        <Reveal className="mx-auto max-w-3xl text-center" variant="scale">
+          <div className="mx-auto flow-line flow-line-center" aria-hidden="true" />
           <h2 className="mt-8 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
             Let’s make your yard the calmest place on the block.
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-ink-soft">
             Serving {site.serviceArea}. Call{" "}
-            <a href={site.phoneHref} className="font-medium text-flow-deep">
+            <a href={site.phoneHref} className="font-medium text-flow-deep transition-colors hover:text-ink">
               {site.phone}
             </a>{" "}
             or send a quick note — we typically reply the same business day.
           </p>
           <Link
             href="/contact/"
-            className="btn-primary mt-8 inline-flex h-12 items-center rounded-full px-7 text-sm font-semibold transition-transform hover:scale-[1.02]"
+            className="btn-primary mt-8 inline-flex h-12 items-center rounded-full px-7 text-sm font-semibold"
           >
             Contact us
           </Link>
-        </div>
+        </Reveal>
       </section>
     </>
   )

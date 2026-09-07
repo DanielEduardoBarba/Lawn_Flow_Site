@@ -13,6 +13,7 @@ package-lock.json
 bun-lock.json
 # testing
 /coverage
+.firebase
 
 # next.js
 /.next/

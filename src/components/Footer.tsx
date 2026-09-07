@@ -12,7 +12,7 @@ export function Footer() {
         <div className="space-y-5">
           <BrandLogo size="md" />
           <p className="max-w-sm text-[15px] leading-relaxed text-ink-soft">
-            {site.description}
+            {site.shortDescription}
           </p>
           <div className="flow-line" aria-hidden="true" />
           <p className="text-sm text-ink-soft">{site.tagline}</p>

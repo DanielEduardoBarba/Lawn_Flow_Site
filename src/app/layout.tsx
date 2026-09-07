@@ -3,7 +3,7 @@ import { Figtree, Syne } from "next/font/google"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import { JsonLd } from "@/components/JsonLd"
-import { site } from "@/lib/site"
+import { localityLabel, site } from "@/lib/site"
 import "./globals.css"
 
 const display = Syne({
@@ -18,53 +18,72 @@ const body = Figtree({
   weight: ["400", "500", "600", "700"],
 })
 
+const defaultTitle = `${site.name} | Landscaping, Irrigation & Lawn Care in ${localityLabel}`
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Landscaping, Irrigation & Lawn Care`,
+    default: defaultTitle,
     template: `%s | ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
-  keywords: [
-    "landscaping",
-    "irrigation",
-    "lawn care",
-    "sprinkler repair",
-    "privacy hedges",
-    "lawn maintenance",
-    "Lawn Flow",
-  ],
+  keywords: [...site.keywords],
   authors: [{ name: site.legalName }],
   creator: site.legalName,
+  publisher: site.legalName,
+  category: "Landscaping",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/logo.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} | Landscaping, Irrigation & Lawn Care`,
+    title: defaultTitle,
     description: site.description,
     images: [
       {
-        url: "/logo.png",
-        width: 1254,
-        height: 1254,
-        alt: "Lawn Flow logo",
+        url: site.ogImage,
+        width: 1600,
+        height: 1200,
+        alt: `${site.name} landscaping and lawn care in ${localityLabel}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Landscaping, Irrigation & Lawn Care`,
+    title: defaultTitle,
     description: site.description,
-    images: ["/logo.png"],
+    images: [site.ogImage],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   alternates: {
     canonical: "/",
+  },
+  other: {
+    "geo.region": "US-FL",
+    "geo.placename": site.county,
+    "geo.position": `${site.geo.latitude};${site.geo.longitude}`,
+    ICBM: `${site.geo.latitude}, ${site.geo.longitude}`,
   },
 }
 
@@ -74,7 +93,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col font-sans antialiased">
         <JsonLd />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex min-h-0 flex-1 flex-col">{children}</main>
         <Footer />
       </body>
     </html>
