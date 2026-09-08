@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { BrandLogo } from "@/components/BrandLogo"
 import { services } from "@/lib/services"
-import { fullAddress, site } from "@/lib/site"
+import { locationLabel, site } from "@/lib/site"
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -60,10 +60,10 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <address className="not-italic leading-relaxed">{fullAddress}</address>
+              <address className="not-italic leading-relaxed">{locationLabel}</address>
             </li>
             <li>{site.hours}</li>
-            <li>{site.serviceArea}</li>
+            <li>{site.areaLabel}</li>
           </ul>
         </div>
       </div>

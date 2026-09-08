@@ -8,6 +8,31 @@ const interests = ["Landscaping", "Irrigation", "Lawn Care", "General question"]
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sent">("idle")
 
+  if (!site.contactFormEnabled) {
+    return (
+      <div className="rounded-[1.75rem] border border-line bg-white p-8 sm:p-10">
+        <p className="font-display text-2xl font-semibold text-ink">Online form coming soon.</p>
+        <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+          For now, the fastest way to reach us is a call or email — we typically reply the same business day.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href={site.phoneHref}
+            className="btn-primary inline-flex h-12 items-center rounded-full px-6 text-sm font-semibold"
+          >
+            Call {site.phone}
+          </a>
+          <a
+            href={site.emailHref}
+            className="inline-flex h-12 items-center rounded-full border border-line bg-mist/60 px-6 text-sm font-semibold text-ink transition-colors hover:border-flow-deep hover:text-flow-deep"
+          >
+            Email us
+          </a>
+        </div>
+      </div>
+    )
+  }
+
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const form = new FormData(event.currentTarget)
@@ -76,7 +101,7 @@ export function ContactForm() {
             name="phone"
             autoComplete="tel"
             className="h-12 w-full rounded-2xl border border-line bg-mist/60 px-4 text-[15px] text-ink outline-none transition placeholder:text-ink-soft/70 focus:border-flow-deep focus:bg-white"
-            placeholder="(555) 000-0000"
+            placeholder="(954) 000-0000"
           />
         </label>
         <label className="block space-y-2">

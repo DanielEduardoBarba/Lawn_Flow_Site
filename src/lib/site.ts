@@ -7,18 +7,19 @@ export const site = {
   shortDescription:
     "Professional landscaping, irrigation installation & repair, and lawn care serving Broward County, FL.",
   url: "https://lawnflow.example.com",
-  phone: "(555) 014-2780",
-  phoneHref: "tel:+15550142780",
-  email: "hello@lawnflow.example.com",
-  emailHref: "mailto:hello@lawnflow.example.com",
+  phone: "(954) 601-6440",
+  phoneHref: "tel:+19546016440",
+  phoneE164: "+1-954-601-6440",
+  email: "lawnflowbroward23@gmail.com",
+  emailHref: "mailto:lawnflowbroward23@gmail.com",
+  /** Flip to true once the contact API key is wired up */
+  contactFormEnabled: false,
   address: {
-    street: "1240 Greenery Lane",
-    city: "Fort Lauderdale",
     region: "FL",
-    postal: "33301",
     country: "US",
   },
   county: "Broward County",
+  areaLabel: "Broward Area",
   geo: {
     latitude: 26.1224,
     longitude: -80.1373,
@@ -85,7 +86,8 @@ export const site = {
   },
 } as const
 
-export const fullAddress = `${site.address.street}, ${site.address.city}, ${site.address.region} ${site.address.postal}`
+/** Display location when no street address is published */
+export const locationLabel = `${site.county}, ${site.address.region}`
 
 /** Primary SEO locality — keep searches scoped to Broward */
 export const localityLabel = "Broward County, FL"

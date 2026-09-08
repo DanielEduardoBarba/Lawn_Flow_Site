@@ -36,13 +36,9 @@ Update `.firebaserc` with your Firebase project ID, and set `site.url` in `src/l
 
 ## Contact & location
 
-Update `src/lib/site.ts` before launch:
+Update `src/lib/site.ts` before launch with your live domain (`site.url`).
 
-- Live domain (`site.url`)
-- Phone, email, street address
-- Confirm Broward service cities if the list should be narrower
-
-SEO is scoped to **Broward County, FL** only (not Miami-Dade / Palm Beach).
+Phone, email, and Broward-only location are already set. SEO is scoped to **Broward County / Broward Area** (no street address published).
 
 ## Code style
 

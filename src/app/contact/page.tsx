@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/ContactForm"
 import { ContactJsonLd } from "@/components/JsonLd"
 import { Reveal } from "@/components/Reveal"
 import { buildPageMetadata } from "@/lib/seo"
-import { fullAddress, localityLabel, site } from "@/lib/site"
+import { localityLabel, locationLabel, site } from "@/lib/site"
 
 export const metadata: Metadata = buildPageMetadata({
   title: `Contact | Free Quote in ${localityLabel}`,
@@ -13,7 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
   keywords: [
     "contact Lawn Flow",
     "landscaping quote Broward County",
-    "lawn care estimate Fort Lauderdale",
+    "lawn care estimate Broward Area",
     "irrigation repair quote Broward",
   ],
 })
@@ -37,7 +37,9 @@ export default function ContactPage() {
               Tell us about your yard.
             </h1>
             <p className="mt-5 max-w-md text-[16px] leading-relaxed text-ink-soft">
-              Share a few details and we will follow up with next steps for properties in {localityLabel}. Prefer a call? We are happy to talk through the project live.
+              {site.contactFormEnabled
+                ? `Share a few details and we will follow up with next steps for properties in ${localityLabel}. Prefer a call? We are happy to talk through the project live.`
+                : `Call or email us for a quote on landscaping, irrigation, or lawn care in ${localityLabel}. We typically reply the same business day.`}
             </p>
 
             <dl className="mt-10 space-y-6 text-[15px]">
@@ -63,10 +65,10 @@ export default function ContactPage() {
               </div>
               <div>
                 <dt className="font-display text-sm font-semibold uppercase tracking-[0.12em] text-ink">
-                  Address
+                  Location
                 </dt>
                 <dd className="mt-1.5 text-ink-soft">
-                  <address className="not-italic leading-relaxed">{fullAddress}</address>
+                  <address className="not-italic leading-relaxed">{locationLabel}</address>
                 </dd>
               </div>
               <div>
@@ -80,7 +82,7 @@ export default function ContactPage() {
                   Service area
                 </dt>
                 <dd className="mt-1.5 text-ink-soft">
-                  {site.serviceArea} — including {site.serviceAreaCities.slice(0, 6).join(", ")}, and nearby cities in the county.
+                  {site.areaLabel} — including {site.serviceAreaCities.slice(0, 6).join(", ")}, and nearby cities in Broward County.
                 </dd>
               </div>
             </dl>
